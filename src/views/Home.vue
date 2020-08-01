@@ -17,6 +17,10 @@
             <el-button @click="Search" class="btn" slot="append" icon="el-icon-search"></el-button>
           </el-input>
         </div>
+        <div class="user-box">
+          <button v-if="!token" @click="$router.push('/tologin')">登录</button>
+          <button v-else @click="remotoken">登出</button>
+        </div>
       </el-header>
       <el-container>
         <!-- 侧边栏 -->
@@ -40,7 +44,7 @@
           </el-main>
             <!-- 底部 -->
           <el-footer>
-            <audio class="audio-box" :src="songurl" loop controls autoplay >
+            <audio v-if="$route.path == '/login'" class="audio-box" :src="songurl" loop controls autoplay >
             </audio>
           </el-footer>
         </el-container>
@@ -64,7 +68,8 @@ export default {
         },
       cerrIndex : 0,
       topConten:'',
-      songurl:''
+      songurl:'',
+      token:'',
     }
   },
   created() {
@@ -77,6 +82,10 @@ export default {
       this.cerrIndex = sessionStorage.getItem('cerrIndex')
       return
     }
+    // this.token = localStorage.getItem('token')
+  },
+  mounted() {
+    this.token = localStorage.getItem('token')
   },
   methods: {
     ClickAE(i){
@@ -105,6 +114,12 @@ export default {
     },
     goFound(){
       this.$router.push('/found')
+    },
+
+    remotoken(){
+      localStorage.clear()
+      this.token = ''
+      this.$msg.success('退出成功')
     }
   },
   watch: {
@@ -112,6 +127,7 @@ export default {
       switch (this.$route.path) {
         case '/found':
           this.cerrIndex = 0
+          this.token = localStorage.getItem('token')
           break;
         case '/recommend':
           this.cerrIndex = 1
@@ -133,6 +149,7 @@ export default {
   .el-header{
     background-color: rgb(249, 249, 249);
     display: flex;
+    position: relative;
     .top-icons{
       margin-top: 7px;
       span{
@@ -194,7 +211,7 @@ export default {
     .top-input{
       align-self: center;
       position: absolute;
-      right: 80px;
+      right: 180px;
       .input-with-select{
         width: 200px;
         height: 32px;
@@ -242,6 +259,28 @@ export default {
 .audio-box{
   width: 100%;
   height: 100%;
+}
+.user-box{
+  position: absolute;
+  right: 55px;
+  top: 50%;
+  transform: translateY(-50%);
+  button{
+    border: 0;
+    background-color: #f5f7fa;
+    border: 1px solid #d3d3d3;
+    padding:5px 30px;
+    border-radius: 10px;
+    color: #858585;
+    cursor: pointer;
+    outline: none;
+    &:hover{
+      transition: .3s;
+      color: #000;
+      background-color: #f9f9f9;
+      border-color: rgb(138, 138, 138);
+    }
+  }
 }
 </style>
 

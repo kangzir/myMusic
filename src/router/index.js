@@ -9,6 +9,10 @@ const NewMV = () => import('../views/newMV/NewMV')
 const Result = () =>import('../views/result/Result')
 const DetailsRecommend = () =>import('../views/DetailsRecommend/DetailsRecommend')
 const mvDetails =() =>import('../views/mvdetails/mvDetails')
+// 登录注册
+const Login = ()=> import('../views/login/Login')
+const ToLogin = ()=> import('../views/login/ToLogIn')
+
 Vue.use(VueRouter)
 
   const routes = [
@@ -59,6 +63,16 @@ Vue.use(VueRouter)
         path:'/mvdetails/:id',
         component:mvDetails,
         meta: { title:'视频'}
+      },
+      {
+        path:'/login',
+        component:Login,
+        meta: { title:'登录'}
+      },
+      {
+        path:'/tologin',
+        component:ToLogin,
+        meta: { title:'注册'}
       },
     ]
   },

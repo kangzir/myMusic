@@ -16,11 +16,13 @@ import {
   Table,
   TableColumn,
   Tabs,
-  TabPane
+  TabPane,
+  Card
+  
  } from 'element-ui'
 
  Vue.prototype.$msg = Message
- 
+Vue.use(Card)
 Vue.use(TabPane)
 Vue.use(Tabs)
 Vue.use(TableColumn)
