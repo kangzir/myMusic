@@ -44,7 +44,7 @@
           </el-main>
             <!-- 底部 -->
           <el-footer>
-            <audio v-if="$route.path == '/login'" class="audio-box" :src="songurl" loop controls autoplay >
+            <audio class="audio-box" :src="songurl" loop controls autoplay >
             </audio>
           </el-footer>
         </el-container>

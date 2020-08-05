@@ -139,12 +139,13 @@ import {getLogin,getRefresh,getCaptcha,getCaptcha1,getPhone} from '../../network
 
 <style scoped lang="less">
 .tologin{
-  background-color: #fff;
+  background-color: #f5f6f7;
   height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
+  z-index: 9;
 }
 .form-box{
   width: 500px;
